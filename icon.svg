@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#0a1628"/>
+  <rect width="512" height="512" rx="96" fill="url(#grad)"/>
+  <defs>
+    <radialGradient id="grad" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0a1628" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Balança da justiça estilizada -->
+  <!-- Haste central -->
+  <rect x="248" y="130" width="16" height="240" rx="8" fill="#c9a84c"/>
+  <!-- Base -->
+  <rect x="180" y="356" width="152" height="18" rx="9" fill="#c9a84c"/>
+  <!-- Barra horizontal -->
+  <rect x="130" y="178" width="252" height="14" rx="7" fill="#c9a84c"/>
+  <!-- Prato esquerdo -->
+  <ellipse cx="170" cy="260" rx="52" ry="12" fill="none" stroke="#c9a84c" stroke-width="10"/>
+  <line x1="138" y1="192" x2="138" y2="255" stroke="#c9a84c" stroke-width="6"/>
+  <line x1="202" y1="192" x2="202" y2="255" stroke="#c9a84c" stroke-width="6"/>
+  <!-- Prato direito -->
+  <ellipse cx="342" cy="260" rx="52" ry="12" fill="none" stroke="#c9a84c" stroke-width="10"/>
+  <line x1="310" y1="192" x2="310" y2="255" stroke="#c9a84c" stroke-width="6"/>
+  <line x1="374" y1="192" x2="374" y2="255" stroke="#c9a84c" stroke-width="6"/>
+  <!-- Estrela no topo -->
+  <circle cx="256" cy="134" r="20" fill="#c9a84c"/>
+  <circle cx="256" cy="134" r="12" fill="#0a1628"/>
+  <circle cx="256" cy="134" r="6" fill="#c9a84c"/>
+</svg>
