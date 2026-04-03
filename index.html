@@ -939,7 +939,7 @@ body {
 
 // ── CONFIG ──────────────────────────────────────────────────────
 // Depois de publicar o adv-codigo.gs como Web App, cole a URL aqui:
-var GAS_URL = 'COLE_AQUI_A_URL_DO_NOVO_GAS';
+var GAS_URL = 'https://script.google.com/macros/s/AKfycbw1wdmKGLwUCYqwl2c7-76m_hqQHa6HHRIxTGeC43sTi0rLCTPC5QARKySa8AVV_UqKZw/exec';
 var SESSAO_TTL = 8 * 60 * 60 * 1000; // 8 horas
 
 // ── ESTADO ──────────────────────────────────────────────────────
@@ -1060,7 +1060,7 @@ function logout() {
 
 // ── API ─────────────────────────────────────────────────────────
 async function api(acao, dados) {
-  if (!GAS_URL || GAS_URL.indexOf('COLE_AQUI') >= 0) {
+  if (!GAS_URL || GAS_URL.indexOf('https://script.google.com/macros/s/AKfycbw1wdmKGLwUCYqwl2c7-76m_hqQHa6HHRIxTGeC43sTi0rLCTPC5QARKySa8AVV_UqKZw/exec') >= 0) {
     throw new Error('Configure a URL do GAS no topo do script (GAS_URL).');
   }
   var payload = Object.assign({ acao: acao, senha: S.senha }, dados || {});
