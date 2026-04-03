@@ -1060,17 +1060,41 @@ function logout() {
 
 // ── API ─────────────────────────────────────────────────────────
 async function api(acao, dados) {
-  if (!GAS_URL || GAS_URL.indexOf('https://script.google.com/macros/s/AKfycbw1wdmKGLwUCYqwl2c7-76m_hqQHa6HHRIxTGeC43sTi0rLCTPC5QARKySa8AVV_UqKZw/exec') >= 0) {
-    throw new Error('Configure a URL do GAS no topo do script (GAS_URL).');
+  if (!GAS_URL || GAS_URL.length < 30) {
+    throw new Error('GAS_URL não configurada.');
   }
   var payload = Object.assign({ acao: acao, senha: S.senha }, dados || {});
-  var res = await fetch(GAS_URL, {
-    method: 'POST',
-    redirect: 'follow',
-    body: JSON.stringify(payload),
-  });
-  var json = await res.json();
-  if (json.erro) throw new Error(json.erro);
+  dbg('→ ' + acao, 'api', payload);
+  var res, texto, json;
+  try {
+    res = await fetch(GAS_URL, {
+      method: 'POST',
+      redirect: 'follow',
+      body: JSON.stringify(payload),
+    });
+  } catch(e) {
+    dbg('fetch FALHOU (' + acao + ')', 'erro', { nome: e.name, msg: e.message });
+    throw new Error('Falha de rede: ' + e.message);
+  }
+  dbg('← HTTP ' + res.status + ' (' + acao + ')', res.ok ? 'net' : 'aviso');
+  try {
+    texto = await res.text();
+    dbg('Resposta bruta', 'net', texto.substring(0, 400));
+  } catch(e) {
+    dbg('Falha ao ler resposta', 'erro', e.message);
+    throw e;
+  }
+  try {
+    json = JSON.parse(texto);
+  } catch(e) {
+    dbg('JSON inválido', 'erro', texto.substring(0, 200));
+    throw new Error('Resposta inválida do servidor.');
+  }
+  if (json.erro) {
+    dbg('GAS retornou erro', 'aviso', json);
+    throw new Error(json.erro);
+  }
+  dbg('✔ ' + acao + ' OK', 'ok', json);
   return json;
 }
 
@@ -1616,11 +1640,53 @@ function toast(msg, tipo, dur) {
   }, dur || 3000);
 }
 
+// ── DEBUG ────────────────────────────────────────────────────────
+var _dbgN = 0;
+function dbg(msg, tipo, dados) {
+  _dbgN++;
+  var box = document.getElementById('debug-box');
+  var tit = document.getElementById('dbg-titulo');
+  if (!box) return;
+  var cores = { ok:'#4caf82', erro:'#e05252', aviso:'#f0a500', api:'#7eb8f7', net:'#c07ef7', info:'#8892a4' };
+  var cor   = cores[tipo] || '#8892a4';
+  var ts    = new Date().toLocaleTimeString('pt-BR');
+  var extra = '';
+  if (dados !== undefined) {
+    try { extra = '<div style="color:#4a6a5a;font-size:0.58rem;padding-left:8px;margin-top:2px;white-space:pre-wrap;word-break:break-all;">' + JSON.stringify(dados, null, 2).substring(0,600) + '</div>'; }
+    catch(e) { extra = '<div style="color:#4a5568;font-size:0.58rem;">' + String(dados).substring(0,300) + '</div>'; }
+  }
+  box.innerHTML = '<div style="border-bottom:1px solid rgba(255,255,255,0.04);padding:4px 0;">' +
+    '<span style="color:#2a4a6a;font-size:0.58rem;">[' + ts + ']</span> ' +
+    '<span style="color:' + cor + ';font-size:0.65rem;">' + String(msg) + '</span>' +
+    extra + '</div>' + box.innerHTML;
+  if (tit) tit.textContent = 'DEBUG EVM-Adv [' + _dbgN + ']';
+}
+function abrirDebug() {
+  var p = document.getElementById('debug-panel');
+  if (p) p.style.display = p.style.display === 'none' ? 'flex' : 'none';
+}
+async function dbgPing() {
+  dbg('Ping para o GAS...', 'api');
+  try {
+    var r = await fetch(GAS_URL, { method:'POST', redirect:'follow', body: JSON.stringify({ acao:'ping' }) });
+    var t = await r.text();
+    dbg('Ping HTTP ' + r.status, r.ok ? 'ok' : 'erro', t.substring(0,200));
+  } catch(e) { dbg('Ping FALHOU', 'erro', e.message); }
+}
+function dbgEstado() {
+  dbg('Estado atual', 'info', { GAS_URL: GAS_URL, senha_ok: !!S.senha, filtro: S.filtro, cpfFicha: S.cpfFicha });
+}
+
 // ── INIT ─────────────────────────────────────────────────────────
 (function init() {
+  dbg('EVM Adv iniciando...', 'info');
+  dbg('GAS_URL configurada', 'info', GAS_URL);
   // Service Worker
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(function() {});
+    navigator.serviceWorker.register('sw.js').then(function(reg) {
+      reg.update();
+      dbg('Service Worker registrado', 'ok');
+    }).catch(function(e) { dbg('SW erro: ' + e.message, 'aviso'); });
   }
   // Checar sessão salva
   var senha = lerSessao();
@@ -1646,7 +1712,37 @@ function toast(msg, tipo, dur) {
     }
   });
 })();
-// EVM Adv — v1
+// EVM Adv — v2
 </script>
+
+<!-- ════ RODAPÉ DEBUG ════ -->
+<div onclick="abrirDebug()" style="position:fixed;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;padding:4px;font-size:0.6rem;color:rgba(136,146,164,0.25);cursor:pointer;z-index:99;user-select:none;">
+  EVM Adv v2 · toque aqui para debug
+</div>
+
+<div id="debug-panel" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#080e1a;border-top:2px solid #c9a84c;z-index:9999;max-height:55vh;flex-direction:column;overflow:hidden;font-family:monospace;">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:5px 10px;background:#0f1e36;border-bottom:1px solid rgba(201,168,76,0.2);">
+    <span id="dbg-titulo" style="color:#c9a84c;font-size:0.7rem;font-weight:700;">DEBUG EVM-Adv [0]</span>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <button onclick="dbgEstado()" style="background:#0a1628;border:1px solid #2a4a6a;color:#7eb8f7;font-size:0.6rem;padding:2px 7px;border-radius:4px;cursor:pointer;">Estado</button>
+      <button onclick="dbgPing()" style="background:#0a1628;border:1px solid #2a4a6a;color:#c07ef7;font-size:0.6rem;padding:2px 7px;border-radius:4px;cursor:pointer;">Ping</button>
+      <button onclick="document.getElementById('debug-box').innerHTML='';_dbgN=0;" style="background:#0a1628;border:1px solid #333;color:#666;font-size:0.6rem;padding:2px 7px;border-radius:4px;cursor:pointer;">Limpar</button>
+      <button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('debug-box').innerText).then(function(){dbg('Copiado!','ok')});" style="background:#0a1628;border:1px solid #333;color:#666;font-size:0.6rem;padding:2px 7px;border-radius:4px;cursor:pointer;">Copiar</button>
+      <button onclick="document.getElementById('debug-panel').style.display='none';" style="background:#0a1628;border:1px solid #333;color:#888;font-size:0.6rem;padding:2px 7px;border-radius:4px;cursor:pointer;">✕</button>
+    </div>
+  </div>
+  <div style="padding:3px 10px;background:#0a1628;border-bottom:1px solid rgba(255,255,255,0.05);">
+    <span id="dbg-url-show" style="font-size:0.58rem;color:#3a8a5a;word-break:break-all;"></span>
+  </div>
+  <div id="debug-box" style="padding:6px 10px;overflow-y:auto;flex:1;"></div>
+</div>
+
+<script>
+(function(){
+  var el = document.getElementById('dbg-url-show');
+  if (el && typeof GAS_URL !== 'undefined') el.textContent = 'URL: ' + GAS_URL;
+})();
+</script>
+
 </body>
 </html>

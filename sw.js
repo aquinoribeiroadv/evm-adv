@@ -1,5 +1,5 @@
 // ── EVM Adv — Service Worker v1 ─────────────────────────────────
-const CACHE = 'evm-adv-v1';
+const CACHE = 'evm-adv-v2';
 const ASSETS = [
   './',
   './index.html',
