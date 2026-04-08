@@ -10,7 +10,7 @@
 <title>EVM — Escritório</title>
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
 /* ── VARIÁVEIS ── */
 :root {
@@ -85,7 +85,7 @@ body {
 }
 .hdr-logo { display: flex; flex-direction: column; }
 .hdr-titulo {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 900;
   font-size: 0.88rem;
   color: var(--gold);
@@ -138,7 +138,7 @@ body {
 }
 .btn-voltar:active { opacity: 0.7; }
 .hdr-nome {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 800;
   font-size: 1rem;
   color: var(--white);
@@ -254,7 +254,7 @@ body {
   font-size: 2rem;
 }
 .login-titulo {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 900;
   font-size: 1.35rem;
   color: var(--gold);
@@ -352,6 +352,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   cursor: pointer;
   transition: border-color 0.2s, transform 0.1s;
   position: relative;
@@ -379,12 +380,13 @@ body {
   0%, 100% { box-shadow: 0 0 0 0 rgba(224,82,82,0); }
   50%       { box-shadow: 0 0 0 4px rgba(224,82,82,0.15); }
 }
-.stat-icon { font-size: 1.2rem; }
+.stat-icon { font-size: 1.2rem; text-align: center; }
 .stat-num {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 900;
   font-size: 2rem;
   line-height: 1;
+  text-align: center;
 }
 .stat-card.c-red  .stat-num { color: var(--urg); }
 .stat-card.c-gold .stat-num { color: var(--gold); }
@@ -396,6 +398,7 @@ body {
   color: var(--gray);
   font-weight: 500;
   line-height: 1.2;
+  text-align: center;
 }
 
 /* Card Total — horizontal full width */
@@ -422,7 +425,7 @@ body {
   background: var(--gray2);
 }
 .stat-total-num {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 900;
   font-size: 2.4rem;
   color: var(--white);
@@ -548,7 +551,7 @@ body {
   padding: 20px 16px 16px;
 }
 .ficha-primeiro-nome {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 900;
   font-size: 1.8rem;
   color: var(--white);
@@ -620,7 +623,7 @@ body {
   padding: 18px 16px;
 }
 .ficha-cargo {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 800;
   font-size: 1.05rem;
   color: var(--white);
@@ -788,7 +791,7 @@ body {
 .modelo-card:active { transform: scale(0.96); }
 .modelo-card.selecionado { border-color: var(--gold); background: rgba(201,168,76,0.08); }
 .modelo-letra {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 900;
   font-size: 1.6rem;
   color: var(--gold);
@@ -836,7 +839,7 @@ body {
   gap: 10px;
 }
 .resultado-titulo {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 800;
   font-size: 0.95rem;
   color: var(--ok);
@@ -910,7 +913,7 @@ body {
   text-align: center;
 }
 .hon-resumo-val {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 900;
   font-size: 1rem;
   line-height: 1;
@@ -932,7 +935,7 @@ body {
   gap: 10px;
 }
 .hon-parcela-num {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 900;
   font-size: 0.85rem;
   color: var(--gold);
@@ -946,7 +949,7 @@ body {
   border-radius: var(--r-sm);
   padding: 12px 14px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   cursor: pointer;
   transition: border-color 0.15s;
@@ -954,12 +957,14 @@ body {
 .hon-parcela:active { border-color: var(--gold); }
 .hon-parcela.vencida { border-color: rgba(224,82,82,0.4); }
 .hon-parcela-num {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 900;
   font-size: 0.85rem;
   color: var(--gold);
   width: 38px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 .hon-parcela.vencida .hon-parcela-num { color: var(--urg); }
 .btn-hon-icon {
@@ -1007,7 +1012,7 @@ body {
   overflow-y: auto;
 }
 .parcela-edit-titulo {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 800;
   font-size: 1rem;
   color: var(--white);
@@ -1015,7 +1020,7 @@ body {
 .parcela-edit-sub {
   font-size: 0.75rem;
   color: var(--gray);
-  margin-top: -8px;
+  margin-top: 4px;
 }
 .chips-status-hon {
   display: flex;
@@ -1066,7 +1071,7 @@ body {
 }
 @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 .upload-titulo {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 800;
   font-size: 1rem;
   color: var(--white);
@@ -1132,7 +1137,7 @@ body {
   border-radius: 24px;
   font-size: 0.82rem;
   font-weight: 600;
-  background: var(--navy2);
+  background: #1a2e48;
   border: 1.5px solid var(--borda);
   color: var(--white);
   opacity: 0;
@@ -1142,9 +1147,9 @@ body {
   box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 .toast-item.visivel   { opacity: 1; transform: translateY(0); }
-.toast-item.t-ok      { background: rgba(76,175,130,0.15); border-color: var(--ok); color: var(--ok); }
-.toast-item.t-erro    { background: rgba(224,82,82,0.15); border-color: var(--erro); color: var(--erro); }
-.toast-item.t-gold    { background: rgba(201,168,76,0.15); border-color: var(--gold); color: var(--gold); }
+.toast-item.t-ok      { background: #1a4a35; border-color: var(--ok); color: #fff; }
+.toast-item.t-erro    { background: #4a1a1a; border-color: var(--erro); color: #fff; }
+.toast-item.t-gold    { background: #3a2e10; border-color: var(--gold); color: #fff; }
 
 /* ── EMPTY / LOADING STATE ── */
 .empty-state {
@@ -1209,7 +1214,7 @@ body {
     <div class="hdr-acoes">
       <button class="btn-icon-add" onclick="abrirNovoCliente()" title="Novo cliente">＋</button>
       <button class="btn-icon" id="btn-refresh" onclick="atualizarDashboard()" title="Atualizar">↻</button>
-      <button class="btn-icon" onclick="logout()" title="Sair" style="color:var(--erro);">⏻</button>
+      <a class="btn-icon" href="https://docs.google.com/spreadsheets/d/1Tnjdrxw5h4ckdtddMNrWGlbk4DHihZTpsrsow0W686w/edit?usp=drivesdk" target="_blank" rel="noopener" title="Abrir planilha" style="color:#4caf82;text-decoration:none;font-size:1.1rem;">📊</a>
     </div>
   </div>
   <div class="scroll" id="scroll-dashboard">
@@ -1302,7 +1307,8 @@ body {
       </div>
       <div class="form-grupo">
         <label class="form-lbl">Telefone (WhatsApp)</label>
-        <input class="form-inp" id="nc-telefone" type="tel" placeholder="(83) 90000-0000">
+        <input class="form-inp" id="nc-telefone" type="tel" placeholder="(83) 90000-0000"
+          oninput="mascaraTelefone(this)" maxlength="16">
       </div>
       <div class="form-grupo">
         <label class="form-lbl">Cargo pretendido</label>
@@ -1360,6 +1366,11 @@ body {
       <label class="campo-lbl">Observação</label>
       <input class="form-inp" type="text" id="psheet-obs" placeholder="Ex: Pag via Pix" autocomplete="off">
     </div>
+    <div id="campo-comp-parcela" style="display:flex;flex-direction:column;gap:6px;">
+      <label class="campo-lbl">Comprovante (opcional)</label>
+      <button class="btn-acao btn-drive" style="padding:10px 14px;font-size:0.82rem;" onclick="abrirUploadComprovanteParcela()">📎 Selecionar PDF</button>
+      <div style="font-size:0.72rem;color:var(--ok);" id="comp-parcela-nome"></div>
+    </div>
     <button class="btn-primario" id="btn-salvar-parcela" onclick="salvarParcela()">Salvar</button>
     <button class="btn-upload-cancelar" onclick="fecharParcelaSheet()">Cancelar</button>
   </div>
@@ -1382,6 +1393,65 @@ body {
   </div>
 </div>
 
+<!-- ════ T9 — NOVO HONORÁRIO ════ -->
+<div id="tela-novo-honorario" class="tela">
+  <div class="hdr">
+    <button class="btn-voltar" onclick="voltar()">‹</button>
+    <span class="hdr-nome" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Novo Honorário</span>
+  </div>
+  <div class="scroll-full">
+    <div class="form-section">
+      <div style="font-size:0.75rem;color:var(--gray);text-align:center;" id="nh-cliente-info"></div>
+      <div class="secao-titulo" style="padding:0;">Modelo</div>
+      <div class="modelos-wrap" id="nh-modelos-wrap">
+        <div class="modelo-card selecionado" id="nh-modelo-A" onclick="nhSelecionarModelo('A')"><div class="modelo-letra">A</div><div class="modelo-desc">Tudo no sucesso<br>Sem entrada</div></div>
+        <div class="modelo-card" id="nh-modelo-B" onclick="nhSelecionarModelo('B')"><div class="modelo-letra">B</div><div class="modelo-desc">Pagamento único<br>no ato</div></div>
+        <div class="modelo-card" id="nh-modelo-C" onclick="nhSelecionarModelo('C')"><div class="modelo-letra">C</div><div class="modelo-desc">Entrada + parcelas<br>no sucesso</div></div>
+      </div>
+      <div id="nh-campos" style="display:flex;flex-direction:column;gap:14px;"></div>
+      <div class="form-erro" id="nh-erro"></div>
+      <button class="btn-primario" id="btn-salvar-hon" onclick="salvarNovoHonorario()">Salvar Honorários</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ T8 — MÓDULO HONORÁRIOS ════ -->
+<div id="tela-honorarios-mod" class="tela">
+  <div class="hdr">
+    <button class="btn-voltar" onclick="voltar()">‹</button>
+    <span class="hdr-nome">Honorários</span>
+    <div class="hdr-flex"></div>
+    <span style="font-size:0.72rem;color:var(--gray);" id="honmod-count"></span>
+  </div>
+  <!-- Busca e filtros -->
+  <div class="busca-wrap">
+    <span class="busca-icon">🔍</span>
+    <input class="inp-busca" id="honmod-busca" type="search" placeholder="Buscar por nome..."
+      oninput="filtrarHonMod()">
+  </div>
+  <div class="chips-wrap" id="honmod-chips">
+    <button class="chip ativo" data-st="todos" onclick="setFiltroHonMod('todos',this)">Todos</button>
+    <button class="chip" data-st="Vencida" onclick="setFiltroHonMod('Vencida',this)" style="color:var(--urg);">🔴 Vencido</button>
+    <button class="chip" data-st="A vencer" onclick="setFiltroHonMod('A vencer',this)">📅 A Vencer</button>
+    <button class="chip" data-st="Pago" onclick="setFiltroHonMod('Pago',this)">✅ Pago</button>
+    <button class="chip" data-st="Encerrado" onclick="setFiltroHonMod('Encerrado',this)">🏁 Encerrado</button>
+  </div>
+  <!-- Intervalo de datas -->
+  <div style="display:flex;gap:8px;padding:4px 16px 8px;">
+    <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+      <span style="font-size:0.6rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.06em;">De</span>
+      <input class="form-inp" type="date" id="honmod-de" style="padding:8px 10px;font-size:0.8rem;" onchange="filtrarHonMod()">
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+      <span style="font-size:0.6rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.06em;">Até</span>
+      <input class="form-inp" type="date" id="honmod-ate" style="padding:8px 10px;font-size:0.8rem;" onchange="filtrarHonMod()">
+    </div>
+  </div>
+  <div class="scroll" id="honmod-lista">
+    <div class="loading-state"><div class="spinner" style="color:var(--gold)"></div><span>Carregando...</span></div>
+  </div>
+</div>
+
 <!-- ════ BOTTOM NAV ════ -->
 <nav id="bottom-nav">
   <button class="nav-tab ativo" id="nav-dashboard" onclick="navTab('dashboard')">
@@ -1391,6 +1461,11 @@ body {
   <button class="nav-tab" id="nav-lista" onclick="navTab('lista')">
     <span class="nav-tab-icon">👥</span>
     <span>Clientes</span>
+  </button>
+  <button class="nav-tab" id="nav-honorarios-tab" onclick="navTab('honorarios-mod')">
+    <span class="nav-tab-icon">💰</span>
+    <span>Honorários</span>
+    <span class="nav-badge hidden" id="badge-hon-vencidos">0</span>
   </button>
   <button class="nav-tab" id="nav-urgentes" onclick="navTab('urgentes')">
     <span class="nav-tab-icon">🚨</span>
@@ -1480,7 +1555,7 @@ function voltar() {
 
 function updateNav(telaId) {
   var nav = document.getElementById('bottom-nav');
-  var comNav = ['dashboard', 'lista'];
+  var comNav = ['dashboard', 'lista', 'honorarios-mod'];
   nav.style.display = comNav.indexOf(telaId) >= 0 ? 'flex' : 'none';
   ['dashboard', 'lista', 'urgentes'].forEach(function(id) {
     var tab = document.getElementById('nav-' + id);
@@ -1502,6 +1577,10 @@ function navTab(qual) {
       resetChips();
       carregarLista();
     });
+  } else if (qual === 'honorarios-mod') {
+    ir('honorarios-mod', carregarHonMod);
+    var t = document.getElementById('nav-honorarios-tab');
+    if (t) { document.querySelectorAll('.nav-tab').forEach(function(x){x.classList.remove('ativo');}); t.classList.add('ativo'); }
   } else if (qual === 'urgentes') {
     S.filtro = 'urgentes';
     ir('lista', function() {
@@ -1535,7 +1614,7 @@ function logout() {
   S.senha = null;
   navHist = [];
   try { localStorage.removeItem('evm_adv_sessao'); } catch(e) {}
-  ['tela-dashboard','tela-lista','tela-ficha','tela-contrato','tela-novo-cliente','tela-honorarios'].forEach(function(id) {
+  ['tela-dashboard','tela-lista','tela-ficha','tela-contrato','tela-novo-cliente','tela-honorarios','tela-honorarios-mod','tela-novo-honorario'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.classList.remove('ativa', 'saindo');
   });
@@ -1628,6 +1707,13 @@ function renderStats(stats, recentes) {
   if (badge) {
     badge.textContent = urg;
     badge.classList.toggle('hidden', urg === 0);
+  }
+  // Badge honorários vencidos
+  var badgeHon = document.getElementById('badge-hon-vencidos');
+  if (badgeHon) {
+    var honV = stats.honVencidos || 0;
+    badgeHon.textContent = honV;
+    badgeHon.classList.toggle('hidden', honV === 0);
   }
 
   var wrap = document.getElementById('stats-wrap');
@@ -1824,7 +1910,16 @@ async function carregarFicha() {
       if (!docsEl) return;
       var docs = r.docs || [];
       docsEl.innerHTML = docs.length
-        ? docs.map(function(d) { return '<div class="doc-item"><span class="doc-check">📄</span><span>' + escapar(d) + '</span></div>'; }).join('')
+        ? docs.map(function(d) {
+            var nome = typeof d === 'object' ? d.nome : d;
+            var url  = typeof d === 'object' ? d.url  : '';
+            if (url) {
+              return '<div class="doc-item"><span class="doc-check">📄</span>' +
+                '<a href="' + escapar(url) + '" target="_blank" rel="noopener" style="color:var(--white);text-decoration:none;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + escapar(nome) + '</a>' +
+                '<span style="font-size:0.7rem;color:var(--gray2);flex-shrink:0;">↗</span></div>';
+            }
+            return '<div class="doc-item"><span class="doc-check">📄</span><span>' + escapar(nome) + '</span></div>';
+          }).join('')
         : '<div class="doc-item" style="color:var(--gray2)">Nenhum documento encontrado na pasta.</div>';
     }).catch(function() {});
   } catch(e) {
@@ -1885,6 +1980,7 @@ function renderFicha(c, wrap) {
       '<button class="btn-acao btn-enviar-docs" onclick="enviarDocs(\'' + escapar(c.cpf) + '\')">📧 Enviar Documentos ao Cliente</button>' +
       '<button class="btn-acao" style="background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.4);color:var(--gold);" onclick="abrirHonorarios()">💰 Honorários</button>' +
       '<button class="btn-acao" style="background:rgba(126,184,247,0.1);border-color:rgba(126,184,247,0.35);color:#7eb8f7;" onclick="abrirUpload()">📎 Enviar Arquivo para Pasta</button>' +
+      '<button class="btn-acao" style="background:rgba(224,82,82,0.08);border-color:rgba(224,82,82,0.35);color:var(--urg);margin-top:4px;" onclick="confirmarExclusao()">🗑️ Excluir Cliente</button>' +
     '</div>' +
 
     // ── ETAPAS ──
@@ -2167,6 +2263,23 @@ async function salvarNovoCliente() {
   }
 }
 
+// ── EXCLUIR CLIENTE ──────────────────────────────────────────────
+async function confirmarExclusao() {
+  var c = S.dadosContrato || {};
+  if (!c.cpf) return;
+  var nome = c.nome || 'este cliente';
+  if (!confirm('Tem certeza que deseja excluir ' + nome + '?\nEsta ação não pode ser desfeita.')) return;
+  try {
+    await api('excluirCliente', { cpf: c.cpf });
+    toast('Cliente excluído.', 'erro', 3000);
+    // Voltar para dashboard
+    navHist = [];
+    ir('dashboard', function() { atualizarDashboard(); });
+  } catch(e) {
+    toast('Erro ao excluir: ' + e.message, 'erro');
+  }
+}
+
 // ── HONORÁRIOS ───────────────────────────────────────────────────
 function abrirHonorarios() {
   ir('honorarios', carregarHonorarios);
@@ -2211,7 +2324,12 @@ function detectarVencidas(parcelas) {
 function renderHonorarios(parcelasOriginais, wrap) {
   if (!wrap) return;
   if (!parcelasOriginais.length) {
-    wrap.innerHTML = '<div class="empty-state"><div class="empty-icon">💰</div><div class="empty-txt">Nenhum lançamento de honorários encontrado.</div></div>';
+    wrap.innerHTML =
+      '<div class="empty-state">' +
+        '<div class="empty-icon">💰</div>' +
+        '<div class="empty-txt">Nenhum lançamento de honorários encontrado.</div>' +
+        '<button class="btn-primario" style="margin-top:16px;max-width:280px;" onclick="abrirNovoHonorario()">+ Adicionar Honorários</button>' +
+      '</div>';
     return;
   }
 
@@ -2342,6 +2460,23 @@ function selecionarStatusHon(st) {
   if (campo) campo.classList.toggle('visivel', st === 'Pago');
 }
 
+var _compParcelaFile = null;
+
+function abrirUploadComprovanteParcela() {
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'application/pdf';
+  input.onchange = function() {
+    var f = input.files[0];
+    if (!f) return;
+    if (f.type !== 'application/pdf') { toast('Apenas PDF.', 'erro'); return; }
+    _compParcelaFile = f;
+    var el = document.getElementById('comp-parcela-nome');
+    if (el) el.textContent = '📄 ' + f.name;
+  };
+  input.click();
+}
+
 async function salvarParcela() {
   if (!_parcelaAtual) return;
   var c   = S.dadosContrato || {};
@@ -2365,6 +2500,19 @@ async function salvarParcela() {
       dataPagamento: dtFmt,
       obs:           obs,
     });
+    // Enviar comprovante se selecionado
+    if (_compParcelaFile) {
+      var label = normalizarParcela(_parcelaAtual.parcela || '');
+      var nomeArq = label + '.pdf';
+      var base64 = await new Promise(function(resolve, reject) {
+        var reader = new FileReader();
+        reader.onload  = function() { resolve(reader.result.split(',')[1]); };
+        reader.onerror = function() { reject(new Error('Falha ao ler arquivo.')); };
+        reader.readAsDataURL(_compParcelaFile);
+      });
+      await api('uploadArquivo', { cpf: c.cpf, nomeArquivo: nomeArq, base64: base64, mimeType: 'application/pdf' });
+      _compParcelaFile = null;
+    }
     document.getElementById('parcela-edit-overlay').classList.add('hidden');
     toast('✅ Parcela atualizada!', 'ok');
     // Recarregar honorários
@@ -2375,6 +2523,9 @@ async function salvarParcela() {
     btn.disabled = false;
     btn.innerHTML = 'Salvar';
     _parcelaAtual = null;
+    _compParcelaFile = null;
+    var compNome = document.getElementById('comp-parcela-nome');
+    if (compNome) compNome.textContent = '';
   }
 }
 
@@ -2469,7 +2620,16 @@ async function confirmarUpload() {
       if (!docsEl) return;
       var docs = r.docs || [];
       docsEl.innerHTML = docs.length
-        ? docs.map(function(d) { return '<div class="doc-item"><span class="doc-check">📄</span><span>' + escapar(d) + '</span></div>'; }).join('')
+        ? docs.map(function(d) {
+            var nome = typeof d === 'object' ? d.nome : d;
+            var url  = typeof d === 'object' ? d.url  : '';
+            if (url) {
+              return '<div class="doc-item"><span class="doc-check">📄</span>' +
+                '<a href="' + escapar(url) + '" target="_blank" rel="noopener" style="color:var(--white);text-decoration:none;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + escapar(nome) + '</a>' +
+                '<span style="font-size:0.7rem;color:var(--gray2);flex-shrink:0;">↗</span></div>';
+            }
+            return '<div class="doc-item"><span class="doc-check">📄</span><span>' + escapar(nome) + '</span></div>';
+          }).join('')
         : '<div class="doc-item" style="color:var(--gray2)">Nenhum documento.</div>';
     }).catch(function() {});
   } catch(e) {
@@ -2479,6 +2639,226 @@ async function confirmarUpload() {
     btn.innerHTML = '📤 Enviar para a Pasta';
     _uploadFile     = null;
     _uploadNomeAlvo = null;
+  }
+}
+
+
+// ── MÓDULO HONORÁRIOS (tab) ───────────────────────────────────────
+var _honModTodos   = [];
+var _honModFiltro  = 'todos';
+
+async function carregarHonMod() {
+  var wrap = document.getElementById('honmod-lista');
+  if (wrap) wrap.innerHTML = '<div class="loading-state"><div class="spinner" style="color:var(--gold)"></div><span>Carregando...</span></div>';
+  try {
+    var res = await api('listarHonMod', {});
+    _honModTodos = res.clientes || [];
+    renderHonMod(_honModTodos);
+  } catch(e) {
+    if (wrap) wrap.innerHTML = '<div class="empty-state"><div class="empty-icon">⚠️</div><div class="empty-txt">' + e.message + '</div></div>';
+  }
+}
+
+function setFiltroHonMod(st, el) {
+  _honModFiltro = st;
+  document.querySelectorAll('#honmod-chips .chip').forEach(function(c) { c.classList.remove('ativo'); });
+  if (el) el.classList.add('ativo');
+  filtrarHonMod();
+}
+
+function filtrarHonMod() {
+  var busca = (document.getElementById('honmod-busca').value || '').trim().toLowerCase();
+  var de    = document.getElementById('honmod-de').value;
+  var ate   = document.getElementById('honmod-ate').value;
+
+  var lista = _honModTodos.filter(function(c) {
+    if (_honModFiltro !== 'todos' && c.statusGeral !== _honModFiltro) return false;
+    if (busca && c.nome.toLowerCase().indexOf(busca) < 0) return false;
+    return true;
+  });
+
+  // Ordenar: Vencida → A vencer → Pago → Encerrado
+  var ordem = { 'Vencida': 0, 'A vencer': 1, 'Pago': 2, 'Encerrado': 3 };
+  lista.sort(function(a, b) {
+    return (ordem[a.statusGeral] || 9) - (ordem[b.statusGeral] || 9);
+  });
+
+  renderHonMod(lista);
+}
+
+function renderHonMod(lista) {
+  var wrap  = document.getElementById('honmod-lista');
+  var count = document.getElementById('honmod-count');
+  if (count) count.textContent = lista.length + ' cliente' + (lista.length !== 1 ? 's' : '');
+  if (!wrap) return;
+  if (!lista.length) {
+    wrap.innerHTML = '<div class="empty-state"><div class="empty-icon">💰</div><div class="empty-txt">Nenhum resultado.</div></div>';
+    return;
+  }
+
+  var badgeMap = { 'Vencida': 'badge-red', 'A vencer': 'badge-gold', 'Pago': 'badge-ok', 'Encerrado': 'badge-blue' };
+  var labelMap = { 'Vencida': '🔴 Vencido', 'A vencer': '📅 A Vencer', 'Pago': '✅ Pago', 'Encerrado': '🏁 Encerrado' };
+
+  function fmtR(v) {
+    return 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  wrap.innerHTML = '<div style="padding-top:8px;">' + lista.map(function(c) {
+    var badge = '<span class="badge ' + (badgeMap[c.statusGeral] || 'badge-gray') + '">' + (labelMap[c.statusGeral] || c.statusGeral) + '</span>';
+    var resto = fmtR(c.totalVal - c.pagoVal);
+    return '<div class="cliente-card" onclick="abrirHonorariosMod(\'' + escapar(c.cpf) + '\')">' +
+      '<div class="cliente-card-top">' +
+        '<span class="cliente-nome">' + escapar(c.nome) + '</span>' +
+        '<span class="cliente-chevron">›</span>' +
+      '</div>' +
+      '<div class="cliente-info">' + escapar(c.concurso || '') + '</div>' +
+      '<div class="cliente-footer">' +
+        badge +
+        '<span class="cliente-data">' + c.pagas + '/' + c.totalParcelas + ' pagas · ' + resto + ' a receber</span>' +
+      '</div>' +
+    '</div>';
+  }).join('') + '</div>';
+}
+
+async function abrirHonorariosMod(cpf) {
+  S.cpfFicha = cpf;
+  ir('honorarios', async function() {
+    var wrap = document.getElementById('hon-conteudo');
+    var hdr  = document.getElementById('hon-nome-hdr');
+    if (wrap) wrap.innerHTML = '<div class="loading-state"><div class="spinner" style="color:var(--gold)"></div><span>Carregando...</span></div>';
+    try {
+      var res = await api('buscarCliente', { cpf: cpf });
+      S.dadosContrato = res.cliente;
+      if (hdr) hdr.textContent = (res.cliente.nome || '').split(' ')[0] + ' — Honorários';
+      carregarHonorarios();
+    } catch(e) {
+      if (wrap) wrap.innerHTML = '<div class="empty-state"><div class="empty-icon">⚠️</div><div class="empty-txt">' + e.message + '</div></div>';
+    }
+  });
+}
+
+// ── NOVO HONORÁRIO ────────────────────────────────────────────────
+var nhModeloAtivo = 'A';
+
+function abrirNovoHonorario() {
+  var c = S.dadosContrato || {};
+  ir('novo-honorario', function() {
+    var info = document.getElementById('nh-cliente-info');
+    if (info) info.textContent = (c.nome || '') + (c.concurso ? ' · ' + c.concurso : '');
+    nhSelecionarModelo('A');
+    document.getElementById('nh-erro').textContent = '';
+    var btn = document.getElementById('btn-salvar-hon');
+    if (btn) { btn.disabled = false; btn.innerHTML = 'Salvar Honorários'; }
+  });
+}
+
+function nhSelecionarModelo(m) {
+  nhModeloAtivo = m;
+  ['A','B','C'].forEach(function(id) {
+    var el = document.getElementById('nh-modelo-' + id);
+    if (el) el.classList.toggle('selecionado', id === m);
+  });
+  nhRenderCampos(m);
+}
+
+function nhRenderCampos(m) {
+  var wrap = document.getElementById('nh-campos');
+  if (!wrap) return;
+  var html = '';
+  if (m === 'A') {
+    html =
+      '<div class="campo-wrap"><label class="campo-lbl">Nº de parcelas no sucesso</label>' +
+      '<input class="inp-campo" type="number" id="nh-nparcelas" min="1" max="24" value="6" placeholder="6"></div>' +
+      '<div class="campo-wrap"><label class="campo-lbl">Valor de cada parcela</label>' +
+      '<input class="inp-campo" type="text" id="nh-vparcela" value="R$ 500,00" oninput="mascaraMoeda(this)"></div>' +
+      '<div class="campo-wrap"><label class="campo-lbl">Data da 1ª parcela</label>' +
+      '<input class="inp-campo" type="date" id="nh-data1"></div>';
+  } else if (m === 'B') {
+    html =
+      '<div class="campo-wrap"><label class="campo-lbl">Valor do pagamento único</label>' +
+      '<input class="inp-campo" type="text" id="nh-ventrada" value="" oninput="mascaraMoeda(this)"></div>' +
+      '<div class="campo-wrap"><label class="campo-lbl">Data de vencimento</label>' +
+      '<input class="inp-campo" type="date" id="nh-data1"></div>';
+  } else {
+    html =
+      '<div class="campo-wrap"><label class="campo-lbl">Valor da entrada</label>' +
+      '<input class="inp-campo" type="text" id="nh-ventrada" value="" oninput="mascaraMoeda(this)"></div>' +
+      '<div class="campo-wrap"><label class="campo-lbl">Data da entrada</label>' +
+      '<input class="inp-campo" type="date" id="nh-data1"></div>' +
+      '<div class="row2-campos campo-wrap">' +
+        '<div><label class="campo-lbl">Nº de parcelas</label>' +
+        '<input class="inp-campo" type="number" id="nh-nparcelas" min="1" max="24" value="6"></div>' +
+        '<div><label class="campo-lbl">Valor da parcela</label>' +
+        '<input class="inp-campo" type="text" id="nh-vparcela" value="R$ 500,00" oninput="mascaraMoeda(this)"></div>' +
+      '</div>' +
+      '<div class="campo-wrap"><label class="campo-lbl">Data da 1ª parcela</label>' +
+      '<input class="inp-campo" type="date" id="nh-data2"></div>';
+  }
+  wrap.innerHTML = html;
+}
+
+function nhFmtData(dateInput) {
+  if (!dateInput) return '';
+  var pts = dateInput.split('-');
+  return pts.length === 3 ? pts[2] + '/' + pts[1] + '/' + pts[0] : dateInput;
+}
+
+function nhAddMeses(dataStr, meses) {
+  var pts = dataStr.split('-');
+  if (pts.length !== 3) return dataStr;
+  var d = new Date(+pts[0], +pts[1]-1+meses, +pts[2]);
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+async function salvarNovoHonorario() {
+  var c      = S.dadosContrato || {};
+  var erro   = document.getElementById('nh-erro');
+  var btn    = document.getElementById('btn-salvar-hon');
+  var data1  = (document.getElementById('nh-data1') || {}).value || '';
+  var data2  = (document.getElementById('nh-data2') || {}).value || '';
+  var ventrada  = valNum('nh-ventrada');
+  var nparcelas = valInt('nh-nparcelas');
+  var vparcela  = valNum('nh-vparcela');
+  erro.textContent = '';
+
+  // Validar
+  if (nhModeloAtivo === 'B' && !ventrada) { erro.textContent = 'Informe o valor.'; return; }
+  if (nhModeloAtivo === 'A' && (!vparcela || !nparcelas)) { erro.textContent = 'Informe parcelas e valor.'; return; }
+  if (nhModeloAtivo === 'C' && (!ventrada || !vparcela || !nparcelas)) { erro.textContent = 'Preencha todos os campos.'; return; }
+
+  // Montar parcelas
+  var parcelas = [];
+  var m = nhModeloAtivo;
+
+  if (m === 'B') {
+    parcelas.push({ parcela: 'Entrada', valor: 'R$ ' + ventrada.toLocaleString('pt-BR',{minimumFractionDigits:2}), vencimento: nhFmtData(data1), status: 'Pendente', obs: '' });
+  } else if (m === 'A') {
+    for (var i = 0; i < nparcelas; i++) {
+      var lbl = i === 0 ? '1ª' : (i+1) + 'ª';
+      var dv  = data1 ? nhFmtData(nhAddMeses(data1, i)) : 'A combinar';
+      parcelas.push({ parcela: lbl, valor: 'R$ ' + vparcela.toLocaleString('pt-BR',{minimumFractionDigits:2}), vencimento: dv, status: 'Pendente', obs: '' });
+    }
+  } else {
+    parcelas.push({ parcela: 'Entrada', valor: 'R$ ' + ventrada.toLocaleString('pt-BR',{minimumFractionDigits:2}), vencimento: nhFmtData(data1), status: 'Pendente', obs: '' });
+    for (var j = 0; j < nparcelas; j++) {
+      var lbl2 = j === 0 ? '1ª' : (j+1) + 'ª';
+      var dv2  = data2 ? nhFmtData(nhAddMeses(data2, j)) : 'A combinar';
+      parcelas.push({ parcela: lbl2, valor: 'R$ ' + vparcela.toLocaleString('pt-BR',{minimumFractionDigits:2}), vencimento: dv2, status: 'Pendente', obs: '' });
+    }
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Salvando...';
+  try {
+    await api('adicionarHonorarios', { cpf: c.cpf, nome: c.nome, concurso: c.concurso, modelo: m, parcelas: JSON.stringify(parcelas) });
+    toast('✅ Honorários cadastrados!', 'ok');
+    voltar();
+    carregarHonorarios();
+  } catch(e) {
+    erro.textContent = e.message;
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Salvar Honorários';
   }
 }
 
@@ -2492,6 +2872,12 @@ function startPolling() {
       if (badge) {
         badge.textContent = urg;
         badge.classList.toggle('hidden', urg === 0);
+      }
+      var badgeHon2 = document.getElementById('badge-hon-vencidos');
+      if (badgeHon2) {
+        var honV2 = (res.stats || {}).honVencidos || 0;
+        badgeHon2.textContent = honV2;
+        badgeHon2.classList.toggle('hidden', honV2 === 0);
       }
       if (S.urgAnterior >= 0 && urg > S.urgAnterior) {
         toast('🚨 Novo cliente urgente!', 'erro', 5000);
@@ -2511,6 +2897,15 @@ function stopPolling() {
 function fmtCPF(cpf) {
   var n = String(cpf || '').replace(/\D/g,'').padStart(11,'0');
   return n.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+}
+
+function mascaraTelefone(el) {
+  var v = el.value.replace(/\D/g,'');
+  if (v.length > 11) v = v.slice(0,11);
+  if (v.length === 0) { el.value = ''; return; }
+  if (v.length <= 2)  { el.value = '(' + v; return; }
+  if (v.length <= 7)  { el.value = '(' + v.slice(0,2) + ') ' + v.slice(2); return; }
+  el.value = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
 }
 
 function mascaraCPF(el) {
@@ -2657,12 +3052,12 @@ function dbgEstado() {
   var urlEl = document.getElementById('dbg-url-show');
   if (urlEl) urlEl.textContent = 'URL: ' + GAS_URL;
 })();
-// EVM Adv — v3
+// EVM Adv — v4
 </script>
 
 <!-- ════ RODAPÉ DEBUG ════ -->
 <div onclick="abrirDebug()" style="position:fixed;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;padding:4px;font-size:0.6rem;color:rgba(136,146,164,0.25);cursor:pointer;z-index:99;user-select:none;">
-  EVM Adv v3 · toque aqui para debug
+  EVM Adv v4 · toque aqui para debug
 </div>
 
 <div id="debug-panel" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#080e1a;border-top:2px solid #c9a84c;z-index:9999;max-height:55vh;flex-direction:column;overflow:hidden;font-family:monospace;">
