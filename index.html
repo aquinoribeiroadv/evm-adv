@@ -939,23 +939,108 @@ body {
   width: 42px;
   flex-shrink: 0;
 }
-.btn-comprovante {
+.hon-parcela {
+  margin: 0 16px 8px;
+  background: var(--navy2);
+  border: 1px solid var(--borda);
+  border-radius: var(--r-sm);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.hon-parcela:active { border-color: var(--gold); }
+.hon-parcela.vencida { border-color: rgba(224,82,82,0.4); }
+.hon-parcela-num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 900;
+  font-size: 0.85rem;
+  color: var(--gold);
+  width: 38px;
+  flex-shrink: 0;
+}
+.hon-parcela.vencida .hon-parcela-num { color: var(--urg); }
+.btn-hon-icon {
   width: 34px; height: 34px;
   border-radius: 50%;
   border: 1px solid var(--borda);
   background: var(--navy);
-  color: var(--gray);
   font-size: 1rem;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
   transition: border-color 0.15s, color 0.15s;
+  color: var(--gray);
 }
-.btn-comprovante:active { border-color: var(--gold); color: var(--gold); opacity: 0.8; }
-.hon-parcela-info { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.btn-hon-icon:active { opacity: 0.7; }
+.btn-hon-icon.wa { color: #25d366; border-color: rgba(37,211,102,0.3); }
+.btn-hon-icon.wa:active { border-color: #25d366; }
+.hon-parcela-info { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .hon-parcela-valor { font-size: 0.88rem; font-weight: 700; color: var(--white); }
 .hon-parcela-venc  { font-size: 0.68rem; color: var(--gray); }
-.hon-parcela-obs   { font-size: 0.65rem; color: var(--gray2); font-style: italic; }
+.hon-parcela-obs   { font-size: 0.65rem; color: var(--gray2); font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ── SHEET DE EDIÇÃO DE PARCELA ── */
+.parcela-edit-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 600;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.parcela-edit-sheet {
+  background: var(--navy2);
+  border-top: 2px solid var(--gold);
+  border-radius: 18px 18px 0 0;
+  padding: 20px 20px calc(env(safe-area-inset-bottom,0px) + 20px);
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: slideUp 0.25s cubic-bezier(0.4,0,0.2,1);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.parcela-edit-titulo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--white);
+}
+.parcela-edit-sub {
+  font-size: 0.75rem;
+  color: var(--gray);
+  margin-top: -8px;
+}
+.chips-status-hon {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chip-status-hon {
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--borda);
+  background: var(--navy);
+  color: var(--gray);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.chip-status-hon.ativo-pago     { background: rgba(76,175,130,0.2);  border-color: var(--ok);  color: var(--ok); }
+.chip-status-hon.ativo-avencer  { background: rgba(201,168,76,0.2);  border-color: var(--gold); color: var(--gold); }
+.chip-status-hon.ativo-pendente { background: rgba(136,146,164,0.2); border-color: var(--gray); color: var(--gray); }
+.chip-status-hon.ativo-vencida  { background: rgba(224,82,82,0.2);   border-color: var(--urg);  color: var(--urg); }
+.campo-data-pgto { display: none; }
+.campo-data-pgto.visivel { display: flex; flex-direction: column; gap: 6px; }
 
 /* ── UPLOAD MODAL ── */
 .upload-overlay {
@@ -1248,6 +1333,35 @@ body {
       <div class="spinner" style="color:var(--gold)"></div>
       <span>Carregando honorários...</span>
     </div>
+  </div>
+</div>
+
+<!-- ════ SHEET EDIÇÃO PARCELA ════ -->
+<div id="parcela-edit-overlay" class="parcela-edit-overlay hidden" onclick="fecharParcelaSheet(event)">
+  <div class="parcela-edit-sheet" onclick="event.stopPropagation()">
+    <div>
+      <div class="parcela-edit-titulo" id="psheet-titulo">Parcela</div>
+      <div class="parcela-edit-sub" id="psheet-sub"></div>
+    </div>
+    <div>
+      <div class="campo-lbl" style="margin-bottom:8px;">Status</div>
+      <div class="chips-status-hon" id="psheet-chips">
+        <button class="chip-status-hon" data-st="Pago"      onclick="selecionarStatusHon('Pago')">✅ Pago</button>
+        <button class="chip-status-hon" data-st="A vencer"  onclick="selecionarStatusHon('A vencer')">📅 A vencer</button>
+        <button class="chip-status-hon" data-st="Pendente"  onclick="selecionarStatusHon('Pendente')">⏳ Pendente</button>
+        <button class="chip-status-hon" data-st="Vencida"   onclick="selecionarStatusHon('Vencida')">🔴 Vencida</button>
+      </div>
+    </div>
+    <div class="campo-data-pgto" id="campo-data-pgto">
+      <label class="campo-lbl">Data de pagamento</label>
+      <input class="form-inp" type="date" id="psheet-data">
+    </div>
+    <div class="form-grupo">
+      <label class="campo-lbl">Observação</label>
+      <input class="form-inp" type="text" id="psheet-obs" placeholder="Ex: Pag via Pix" autocomplete="off">
+    </div>
+    <button class="btn-primario" id="btn-salvar-parcela" onclick="salvarParcela()">Salvar</button>
+    <button class="btn-upload-cancelar" onclick="fecharParcelaSheet()">Cancelar</button>
   </div>
 </div>
 
@@ -2072,12 +2186,37 @@ async function carregarHonorarios() {
   }
 }
 
-function renderHonorarios(parcelas, wrap) {
+// Estado da parcela em edição
+var _parcelaAtual    = null;
+var _parcelasCache   = [];
+var _statusHonAtivo  = '';
+
+function detectarVencidas(parcelas) {
+  var hoje = new Date();
+  hoje.setHours(0,0,0,0);
+  return parcelas.map(function(p) {
+    if (p.status === 'Pago') return p;
+    // Tentar parsear vencimento como DD/MM/YYYY
+    var pts = (p.vencimento || '').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if (pts) {
+      var dv = new Date(+pts[3], +pts[2]-1, +pts[1]);
+      if (dv < hoje) {
+        return Object.assign({}, p, { status: 'Vencida' });
+      }
+    }
+    return p;
+  });
+}
+
+function renderHonorarios(parcelasOriginais, wrap) {
   if (!wrap) return;
-  if (!parcelas.length) {
+  if (!parcelasOriginais.length) {
     wrap.innerHTML = '<div class="empty-state"><div class="empty-icon">💰</div><div class="empty-txt">Nenhum lançamento de honorários encontrado.</div></div>';
     return;
   }
+
+  var parcelas = detectarVencidas(parcelasOriginais);
+  _parcelasCache = parcelas;
 
   // Calcular resumo
   var totalVal = 0, pagoVal = 0;
@@ -2091,10 +2230,8 @@ function renderHonorarios(parcelas, wrap) {
   var pendVal = totalVal - pagoVal;
 
   function fmtR(v) {
-    if (!v) return '—';
     return 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
-
   function badgeHon(st) {
     var map = { 'Pago': 'badge-ok', 'A vencer': 'badge-gold', 'Pendente': 'badge-gray', 'Vencida': 'badge-red' };
     return '<span class="badge ' + (map[st] || 'badge-gray') + '">' + (st || '—') + '</span>';
@@ -2111,36 +2248,134 @@ function renderHonorarios(parcelas, wrap) {
         '<span class="hon-resumo-lbl">Recebido</span>' +
       '</div>' +
       '<div class="hon-resumo-card">' +
-        '<span class="hon-resumo-val" style="color:var(--gold);font-size:0.85rem;">' + fmtR(pendVal) + '</span>' +
-        '<span class="hon-resumo-lbl">A receber</span>' +
+        '<span class="hon-resumo-val" style="color:' + (statusHon['Vencida'] > 0 ? 'var(--urg)' : 'var(--gold)') + ';font-size:0.85rem;">' + fmtR(pendVal) + '</span>' +
+        '<span class="hon-resumo-lbl">' + (statusHon['Vencida'] > 0 ? '⚠️ A receber' : 'A receber') + '</span>' +
       '</div>' +
     '</div>';
 
-  // Badges de contagem
   var contagemHtml = '<div style="display:flex;gap:8px;padding:12px 16px 4px;flex-wrap:wrap;">';
   Object.keys(statusHon).forEach(function(st) {
-    if (statusHon[st] > 0) contagemHtml += badgeHon(st) + ' <span style="font-size:0.7rem;color:var(--gray);margin-right:4px;">' + statusHon[st] + '</span>';
+    if (statusHon[st] > 0) contagemHtml += badgeHon(st) + '<span style="font-size:0.7rem;color:var(--gray);margin-right:4px;"> ' + statusHon[st] + '</span>';
   });
   contagemHtml += '</div>';
 
-  // Lista de parcelas
-  var listaHtml = '<div class="secao-titulo" style="padding-top:8px;">Parcelas</div>';
-  parcelas.forEach(function(p) {
+  var listaHtml = '<div class="secao-titulo" style="padding-top:8px;">Parcelas <span style="font-size:0.6rem;color:var(--gray2);">(toque para editar)</span></div>';
+  parcelas.forEach(function(p, idx) {
     var parcelaLabel = normalizarParcela(p.parcela || '');
+    var isVencida    = p.status === 'Vencida';
+    var isPago       = p.status === 'Pago';
+    var c            = S.dadosContrato || {};
+    var telNum       = (c.telefone || '').replace(/\D/g,'');
+    // Montar URL WhatsApp
+    var waMsg = encodeURIComponent(
+      'Olá *' + (c.nome || '').split(' ')[0] + '*, tudo bem?\n\n' +
+      'Passando para lembrar que a *' + p.parcela + '* do seu contrato de honorários' +
+      ' (concurso: *' + (p.concurso || c.concurso || '') + '*),' +
+      ' no valor de *' + p.valor + '*, venceu em *' + p.vencimento + '* e ainda consta como pendente.\n\n' +
+      'Para enviar o comprovante, acesse nosso sistema:\n' +
+      'https://aquinoribeiroadv.github.io/essa-vaga-e-minha/\n\n' +
+      'Qualquer dúvida, estou à disposição!\n' +
+      '*Adriano Aquino — OAB/PB 12.237*'
+    );
+    var waUrl = telNum ? 'https://wa.me/55' + telNum + '?text=' + waMsg : '';
+
     listaHtml +=
-      '<div class="hon-parcela">' +
+      '<div class="hon-parcela' + (isVencida ? ' vencida' : '') + '" onclick="abrirParcelaSheet(' + idx + ')">' +
         '<div class="hon-parcela-num">' + escapar(p.parcela || '—') + '</div>' +
         '<div class="hon-parcela-info">' +
           '<div class="hon-parcela-valor">' + escapar(p.valor || '—') + '</div>' +
-          '<div class="hon-parcela-venc">📅 ' + escapar(p.vencimento || '—') + (p.dataPagamento ? ' · ✅ ' + escapar(p.dataPagamento) : '') + '</div>' +
+          '<div class="hon-parcela-venc">📅 ' + escapar(p.vencimento || '—') +
+            (p.dataPagamento ? ' · ✅ ' + escapar(p.dataPagamento) : '') +
+          '</div>' +
           (p.obs ? '<div class="hon-parcela-obs">' + escapar(p.obs) + '</div>' : '') +
         '</div>' +
         badgeHon(p.status) +
-        '<button class="btn-comprovante" title="Enviar comprovante" onclick="abrirUploadComprovante(\'' + escapar(parcelaLabel) + '\')">🧾</button>' +
+        '<button class="btn-hon-icon" title="Comprovante" onclick="event.stopPropagation();abrirUploadComprovante(\'' + escapar(parcelaLabel) + '\')">🧾</button>' +
+        ((!isPago && waUrl)
+          ? '<a class="btn-hon-icon wa" href="' + waUrl + '" target="_blank" rel="noopener" title="Cobrar via WhatsApp" onclick="event.stopPropagation()">📱</a>'
+          : '') +
       '</div>';
   });
 
   wrap.innerHTML = resumoHtml + contagemHtml + listaHtml + '<div style="height:16px;"></div>';
+}
+
+// ── SHEET DE EDIÇÃO DE PARCELA ───────────────────────────────────
+function abrirParcelaSheet(idx) {
+  var p = _parcelasCache[idx];
+  if (!p) return;
+  _parcelaAtual = p;
+
+  var tit = document.getElementById('psheet-titulo');
+  var sub = document.getElementById('psheet-sub');
+  var obs = document.getElementById('psheet-obs');
+  var dt  = document.getElementById('psheet-data');
+
+  if (tit) tit.textContent = (p.parcela || '') + ' — ' + (p.valor || '');
+  if (sub) sub.textContent = 'Vencimento: ' + (p.vencimento || '—');
+  if (obs) obs.value = p.obs || '';
+
+  // Data de pagamento: se já tem, usar; senão hoje
+  var hoje = new Date().toISOString().slice(0,10);
+  if (dt) dt.value = p.dataPagamento
+    ? (function(d) { var pts = d.split('/'); return pts.length===3 ? pts[2]+'-'+pts[1]+'-'+pts[0] : hoje; })(p.dataPagamento)
+    : hoje;
+
+  selecionarStatusHon(p.status || 'Pendente');
+  document.getElementById('parcela-edit-overlay').classList.remove('hidden');
+}
+
+function fecharParcelaSheet(e) {
+  if (e && e.target !== document.getElementById('parcela-edit-overlay')) return;
+  document.getElementById('parcela-edit-overlay').classList.add('hidden');
+  _parcelaAtual = null;
+}
+
+function selecionarStatusHon(st) {
+  _statusHonAtivo = st;
+  var clsMap = { 'Pago':'ativo-pago', 'A vencer':'ativo-avencer', 'Pendente':'ativo-pendente', 'Vencida':'ativo-vencida' };
+  document.querySelectorAll('.chip-status-hon').forEach(function(c) {
+    c.className = 'chip-status-hon';
+    if (c.dataset.st === st) c.classList.add(clsMap[st] || '');
+  });
+  var campo = document.getElementById('campo-data-pgto');
+  if (campo) campo.classList.toggle('visivel', st === 'Pago');
+}
+
+async function salvarParcela() {
+  if (!_parcelaAtual) return;
+  var c   = S.dadosContrato || {};
+  var btn = document.getElementById('btn-salvar-parcela');
+  var obs = (document.getElementById('psheet-obs').value || '').trim();
+  var dt  = document.getElementById('psheet-data').value || '';
+  // Converter data de YYYY-MM-DD para DD/MM/YYYY
+  var dtFmt = '';
+  if (_statusHonAtivo === 'Pago' && dt) {
+    var pts = dt.split('-');
+    dtFmt = pts[2] + '/' + pts[1] + '/' + pts[0];
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Salvando...';
+  try {
+    await api('marcarParcela', {
+      cpf:           c.cpf,
+      parcela:       _parcelaAtual.parcela,
+      status:        _statusHonAtivo,
+      dataPagamento: dtFmt,
+      obs:           obs,
+    });
+    document.getElementById('parcela-edit-overlay').classList.add('hidden');
+    toast('✅ Parcela atualizada!', 'ok');
+    // Recarregar honorários
+    carregarHonorarios();
+  } catch(e) {
+    toast('Erro ao salvar: ' + e.message, 'erro');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Salvar';
+    _parcelaAtual = null;
+  }
 }
 
 // ── UPLOAD ARQUIVO ───────────────────────────────────────────────
